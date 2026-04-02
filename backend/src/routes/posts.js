@@ -46,4 +46,32 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const { user_id, title, description, text, tags } = req.body;
+
+        if (isNaN(user_id)) {
+            return res.status(400).json({error: 'Invalid user id.'});
+        };
+
+        if (!title || !text) {
+            return res.status(400).json({error: 'Title and text are required fields.'});
+        };
+
+        const result = await pool.query(
+            `INSERT INTO posts (user_id, title, description, text, tags)
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING *`,
+            [user_id, title, description, text, tags]
+        );
+        
+        return res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error('POST /posts failed:', error);
+        return res.status(500).json({
+            error: 'Error! Could not create new post.'
+        });
+    }
+});
+
 export default router;
