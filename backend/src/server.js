@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
-import pool from './db/pools'
-import dbHealth from './helpers/dbHealth'
-import router from './routes/index'
+import pool from './db/pools.js'
+import dbHealth from './helpers/dbHealth.js'
+import router from './routes/index.js'
 
 const app = express();
 

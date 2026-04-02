@@ -1,4 +1,4 @@
-import pool from '../db/pools'
+import pool from '../db/pools.js'
 
 const dbHealth = async (req, res) => {
     try {
