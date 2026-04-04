@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
         };
 
         if (password.length < 12) {
-            res.status(400).json({
+            return res.status(400).json({
                 error: "Password must be of length of more than 12 characters."
             });
         };
