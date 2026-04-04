@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     try {
         const { first_name, last_name, email, password } = req.body;
 
-        if (!first_name || !last_name || !email || ! password) {
+        if (!first_name || !last_name || !email || !password) {
             return res.status(400).json({
                 error: "Valid first name, last name, email, and password is required."
             });
