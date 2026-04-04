@@ -105,4 +105,30 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (isNaN(id)) {
+            return res.status(400).json({ error: 'Valid id is required.'});
+        };
+
+        const result = await pool.query(
+            `DELETE FROM users WHERE id = $1 RETURNING *`,
+            [id]
+        );
+
+        if (result.rows.lenght === 0) {
+            return res.status(404).json({ error: "User not found." });
+        };
+
+        return res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('DELETE /users/:id failed:', error);
+        return res.status(500).json({
+            error: 'Could not delete this user.'
+        });
+    }
+});
+
 export default router;
