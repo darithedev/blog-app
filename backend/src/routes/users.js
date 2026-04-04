@@ -68,6 +68,10 @@ router.put('/:id', async (req, res) => {
         const { id } = req.params;
         const { first_name, last_name, email } = req.body;
 
+        if (isNaN(id)) {
+            return res.status(400).json({error: 'Invalid user id.'});
+        };
+
         if (!first_name || !last_name || !email) {
             return res.status(400).json({
                 error: "Valid first name, last name, and email is required."
