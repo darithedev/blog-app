@@ -63,4 +63,42 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { first_name, last_name, email } = req.body;
+
+        if (!first_name || !last_name || !email) {
+            return res.status(400).json({
+                error: "Valid first name, last name, and email is required."
+            });
+        };
+
+        if (first_name.length < 2 || last_name.length < 2) {
+            return res.status(400).json({
+                error: "A valid first and last name with more than 2 characters is required."
+            });
+        };
+            
+        if (!email.includes('@')) {
+            return res.status({ error: "A valid email is required." });
+        };
+
+        const result = pool.query(
+            `UPDATE users
+            SET first_name = $1, last_name = $2, email = $3
+            WHERE id = $4
+            RETURNING *`,
+            [first_name, last_name, email, id]
+        );
+
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('PUT /users/:id failed:', error);
+        return res.status(500).json({
+            error: 'Could not update this user.'
+        })
+    }
+});
+
 export default router;
