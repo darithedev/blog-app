@@ -60,7 +60,7 @@ router.post('/', async (req, res) => {
         };
             
         if (!email.includes('@')) {
-            return res.status({ error: "A valid email is required." });
+            return res.status(400).json({ error: "A valid email is required." });
         };
 
         if (password.length < 12) {
@@ -113,7 +113,7 @@ router.put('/:id', async (req, res) => {
         };
             
         if (!email.includes('@')) {
-            return res.status({ error: "A valid email is required." });
+            return res.status(400).json({ error: "A valid email is required." });
         };
 
         const result = await pool.query(
