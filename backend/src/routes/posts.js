@@ -110,15 +110,16 @@ router.put('/:id', async (req,res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const { id } = req.params; 
+        const { id } = req.params;
+        const { user_id } = req.body; 
         
-        if (isNaN(id)) {
-            return res.status(400).json({ error: 'Must have a valid id.' });
+        if (isNaN(id) || isNaN(user_id)) {
+            return res.status(400).json({ error: 'Must have a valid id and user_id.' });
         };
 
         const result = await pool.query(
-            `DELETE FROM posts WHERE id = $1 RETURNING *`,
-            [id]
+            `DELETE FROM posts WHERE user_id = $1 AND id = $2 RETURNING *`,
+            [user_id, id]
         );
 
         if (result.rows.length === 0) {
