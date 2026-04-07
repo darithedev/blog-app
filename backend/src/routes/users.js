@@ -146,7 +146,7 @@ router.delete('/:id', async (req, res) => {
             [id]
         );
 
-        if (result.rows.lenght === 0) {
+        if (result.rows.length === 0) {
             return res.status(404).json({ error: "User not found." });
         };
 
