@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict iBO1HTVTqpWbFuDsmQSmUqMs0FW6g3nnuvZA0SGJvc4gfhKdga6NpF0qY3VrZfN
+\restrict 2vbozNyp1NU4f45oAMdVwj1gRlP8POd8pbyQW29w2ZnEPlwa4KSwqoZ5o8iADBG
 
 -- Dumped from database version 15.15 (Homebrew)
 -- Dumped by pg_dump version 15.15 (Homebrew)
@@ -111,6 +111,9 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 COPY public.posts (id, title, description, text, tags, image, user_id, created_at, updated_at) FROM stdin;
+1	Top 10 Sci-Fi Must Reads	A countdown of the best science fiction books of the decade.	zxczxczxcasdasdasdqweqweqwe123123123ZXCASDQWE!@#$&*()_+[]{}|;:,.<>?	{books,sci-fi,"top 10"}	\N	1	2026-04-07 00:11:11.67096-04	2026-04-07 00:11:11.67096-04
+2	Why I Love Fantasy Maps	An exploration of cartography in fantasy literature.	poiuytrewqlkjhgfdsamnbvcxz0987654321POIUYTREWQLKJHGFDSAMNBVCXZ	{books,fantasy,maps}	\N	1	2026-04-07 00:11:25.122048-04	2026-04-07 00:11:25.122048-04
+3	It's a Small World Afterall	AAATalks about the song it's a small world afterall.	This song is written for the legendary Disneyland boat ride of the same name, where children from all over the world sing for world peace.The ride originally opened on April 22, 1964 as one of the four attractions Walt Disney presented at the 1964-1965 New York World’s Fair to showcase his new ride technology Audio-Animatronics, a technology which enables the animatronics to move in sync to the recorded soundtracks much akin to how his animated characters move.As a testament to the song’s longevity, it has become one of the most recognizable tunes of all time and is even stated to be the most translated song in the world. With that said, its catchiness has also been a strong subject of parody and chagrin.	{books,"good reads",new}	\N	1	2026-04-06 23:52:01.625826-04	2026-04-06 23:52:01.625826-04
 \.
 
 
@@ -120,7 +123,7 @@ COPY public.posts (id, title, description, text, tags, image, user_id, created_a
 
 COPY public.users (id, first_name, last_name, email, password, created_at, updated_at) FROM stdin;
 1	Dari	Cares	dari@cares.com	Password123	2026-04-02 23:20:38.828161-04	2026-04-02 23:20:38.828161-04
-2   Amy     Wine    amy@mail.com    Password123 2026-04-03 21:22:13.258661-04   2026-04-03 21:22:13.258661-04
+2 Amy   Wine  amy@mail.com    Password123 2026-04-03 21:22:13.258661-04 2026-04-03 21:22:13.258661-04
 3	Ryley	Cares	riley@cares.com	Password123	2026-04-03 22:58:07.36508-04	2026-04-03 22:58:07.36508-04
 \.
 
@@ -129,14 +132,14 @@ COPY public.users (id, first_name, last_name, email, password, created_at, updat
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 1, true);
+SELECT pg_catalog.setval('public.posts_id_seq', 6, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 4, true);
+SELECT pg_catalog.setval('public.users_id_seq', 5, true);
 
 
 --
@@ -175,5 +178,5 @@ ALTER TABLE ONLY public.posts
 -- PostgreSQL database dump complete
 --
 
-\unrestrict iBO1HTVTqpWbFuDsmQSmUqMs0FW6g3nnuvZA0SGJvc4gfhKdga6NpF0qY3VrZfN
+\unrestrict 2vbozNyp1NU4f45oAMdVwj1gRlP8POd8pbyQW29w2ZnEPlwa4KSwqoZ5o8iADBG
 
