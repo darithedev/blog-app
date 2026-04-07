@@ -123,7 +123,8 @@ COPY public.posts (id, title, description, text, tags, image, user_id, created_a
 
 COPY public.users (id, first_name, last_name, email, password, created_at, updated_at) FROM stdin;
 1	Dari	Cares	dari@cares.com	Password123	2026-04-02 23:20:38.828161-04	2026-04-02 23:20:38.828161-04
-2	Ryley	Cares	riley@cares.com	Password123	2026-04-03 22:58:07.36508-04	2026-04-03 22:58:07.36508-04
+2 Amy   Wine  amy@mail.com    Password123 2026-04-03 21:22:13.258661-04 2026-04-03 21:22:13.258661-04
+3	Ryley	Cares	riley@cares.com	Password123	2026-04-03 22:58:07.36508-04	2026-04-03 22:58:07.36508-04
 \.
 
 
