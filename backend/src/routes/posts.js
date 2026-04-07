@@ -94,6 +94,10 @@ router.put('/:id', async (req,res) => {
             RETURNING *`,
             [title, description, text, tags, user_id, id]
         );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Post not found.' });
+        };
         
         return res.status(200).json(result.rows[0]);
     } catch (error) {
