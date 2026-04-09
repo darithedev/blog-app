@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -19,6 +19,10 @@ const PostsList = () => {
             console.error(error.message);
         }
     }
+
+    useEffect(() => {
+        getPosts();
+    }, []);
 
     return (
         <div className="posts-container">
