@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import './Post.css'
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -31,11 +31,14 @@ const Post = () => {
     return (
         <div className="post-container">
             <h1>{post.title}</h1>
-            <span>{post.description}</span>
-            <div>
-                <span>{post.author}</span>
-                <span>{post.created_at}</span>
-            </div>
+            <p className="post-desc">{post.description}</p>
+            <span>{new Date(post.created_at).toDateString()}</span>
+
+            <Link to={`/users/${post.user_id}`} className="post-author-section">
+                <span id="post-user-icon">{post.author?.charAt(0)}</span>
+                <p>{post.author}</p>
+            </Link>
+
             <p>{post.text}</p>
         </div>
     )
