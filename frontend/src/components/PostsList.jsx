@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import './PostsList.css'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
