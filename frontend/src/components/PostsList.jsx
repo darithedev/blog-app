@@ -37,7 +37,7 @@ const PostsList = () => {
                         <h3>{post.title}</h3>
                     </Link>
 
-                    <p>{post.description}</p>
+                    <p className="post-description">{post.description}</p>
                 </li>
             ))}
         </ul>
