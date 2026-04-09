@@ -25,9 +25,9 @@ const PostsList = () => {
     }, []);
 
     return (
-        <div className="posts-container">
+        <ul className="posts-container">
         
-        </div>
+        </ul>
     )
 }
 
