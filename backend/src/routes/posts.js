@@ -6,7 +6,12 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query(
-            `SELECT * from posts ORDER BY created_at DESC`
+            `SELECT 
+                posts.*,  
+                CONCAT(users.first_name, ' ', users.last_name) AS author
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            ORDER BY created_at DESC`
         );
 
         return res.status(200).json(result.rows);
