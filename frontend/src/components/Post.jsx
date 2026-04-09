@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import './Post.css'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,7 +30,7 @@ const Post = () => {
 
     return (
         <div className="post-container">
-            <h2>{post.title}</h2>
+            <h1>{post.title}</h1>
             <span>{post.description}</span>
             <div>
                 <span>{post.author}</span>
