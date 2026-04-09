@@ -28,7 +28,15 @@ const Post = () => {
     }, []);
 
     return (
-        <h1>Individual Post</h1>
+        <div className="post-container">
+            <h2>{post.title}</h2>
+            <span>{post.description}</span>
+            <div>
+                <span>{post.author}</span>
+                <span>{post.created_at}</span>
+            </div>
+            <p>{post.text}</p>
+        </div>
     )
 }
 
