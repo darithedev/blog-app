@@ -29,15 +29,15 @@ const PostsList = () => {
     return (
         <ul className="posts-container">
             {postList.map((post) => (
-                <div className="post-card" key={post.id}>
-                    <li>{post.author}</li>
+                <li className="post-card" key={post.id}>
+                    <p>{post.author}</p>
                     
                     <Link to={`/posts/${post.id}`}>
                         <h3>{post.title}</h3>
                     </Link>
 
-                    <li>{post.description}</li>
-                </div>
+                    <p>{post.description}</p>
+                </li>
             ))}
         </ul>
     )
