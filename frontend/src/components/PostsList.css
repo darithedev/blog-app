@@ -1,3 +1,44 @@
 .posts-container {
+    justify-content: center;
+    text-align: left;
     list-style: none;
+}
+
+.posts-container a:visited {
+    color: black;
+}
+
+.post-card {
+    margin: 10px;
+    padding: 20px;
+    border-bottom: 1px lightgray solid;
+}
+
+.post-card a {
+    text-decoration: none;
+}
+
+.post-card:hover h3 {
+    text-decoration: underline;
+}
+
+.post-card p {
+    margin-top: 8px;
+}
+
+#user-icon {
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgb(236, 171, 171);
+    border-radius: 50%;
+}
+
+p.post-description {
+    margin-top: -15px;
+}
+
+.created-at-date {
+    display: block;
+    margin-top: 20px;
 }
