@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -26,7 +27,17 @@ const PostsList = () => {
 
     return (
         <ul className="posts-container">
-        
+            {postList.map((post) => (
+                <div className="post-card" key={post.id}>
+                    <li>{post.author}</li>
+                    
+                    <Link to={`/posts/${post.id}`}>
+                        <h3>{post.title}</h3>
+                    </Link>
+
+                    <li>{post.description}</li>
+                </div>
+            ))}
         </ul>
     )
 }
