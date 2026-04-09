@@ -30,6 +30,7 @@ const PostsList = () => {
         <ul className="posts-container">
             {postList.map((post) => (
                 <li className="post-card" key={post.id}>
+                    <span id="user-icon">{post.author.charAt(0)}</span>
                     <p>{post.author}</p>
                     
                     <Link to={`/posts/${post.id}`}>
