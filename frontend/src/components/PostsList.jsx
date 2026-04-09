@@ -38,6 +38,8 @@ const PostsList = () => {
                     </Link>
 
                     <p className="post-description">{post.description}</p>
+
+                    <span className="created-at-date">{new Date(post.created_at).toDateString()}</span>
                 </li>
             ))}
         </ul>
