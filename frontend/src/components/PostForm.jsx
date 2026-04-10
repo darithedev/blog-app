@@ -59,7 +59,7 @@ const PostForm = () => {
 
             const result = await response.json();
             alert("Post was created.");
-            navigate("/");
+            navigate("/post");
         } catch (error) {
             console.error(error.message);
             alert("Post was not created. Please try again.");
@@ -129,7 +129,7 @@ const PostForm = () => {
                 <Button type="button" variant="outline-warning" onClick={clearForm}>
                     Reset
                 </Button>
-                <Button type="button" variant="outline-warning" onClick={() => navigate("/")}>
+                <Button type="button" variant="outline-warning" onClick={() => navigate("/posts")}>
                     Back
                 </Button>
             </Form.Group>
