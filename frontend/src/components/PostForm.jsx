@@ -67,7 +67,7 @@ const PostForm = () => {
     };
 
     const clearForm = () => {
-        setContact({ 
+        setPost({ 
             user_id: id,
             title: "",
             description: "",
