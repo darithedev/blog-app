@@ -30,6 +30,17 @@ const PostForm = () => {
         setPost((t) => ({ ...t, text }));
     };
 
+    const handleTags = (event) => {
+        const value = event.target.value;
+
+        const tags = value
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter((tag) => tag !== "");
+
+        setPost((t) => ({ ...t, tags }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
     }
