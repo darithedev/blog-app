@@ -60,7 +60,7 @@ const PostForm = () => {
 
             const result = await response.json();
             alert("Post was created.");
-            navigate("/post");
+            navigate("/posts");
         } catch (error) {
             console.error(error.message);
             alert("Post was not created. Please try again.");
