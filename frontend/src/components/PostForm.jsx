@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useParams, useNavigate } from 'react-router-dom';
+import './PostForm.css'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -102,14 +103,17 @@ const PostForm = () => {
                 <Form.Control
                     type="text"
                     value={post.description}
+                    placeholder='Add a brief description'
                     onChange={handleDescription}
                 />
             </Form.Group>
             <Form.Group controlId="text">
                 <Form.Label>Add Blog Text: </Form.Label>
                 <Form.Control
-                    type="text"
+                    as="textarea"
+                    rows={20}
                     required
+                    placeholder='One Upon a time...'
                     value={post.text}
                     onChange={handleText}
                 />
@@ -122,17 +126,15 @@ const PostForm = () => {
                     onChange={handleTags}
                 />
             </Form.Group>
-            <Form.Group>
-                <Button type="submit" variant="outline-success">
-                    Submit
-                </Button>
-                <Button type="button" variant="outline-warning" onClick={clearForm}>
-                    Reset
-                </Button>
-                <Button type="button" variant="outline-warning" onClick={() => navigate("/posts")}>
-                    Back
-                </Button>
-            </Form.Group>
+            <Button type="submit" variant="outline-success">
+                Submit
+            </Button>
+            <Button type="button" variant="outline-warning" onClick={clearForm}>
+                Reset
+            </Button>
+            <Button type="button" variant="outline-warning" onClick={() => navigate("/posts")}>
+                Back
+            </Button>
         </Form>
     )
 
