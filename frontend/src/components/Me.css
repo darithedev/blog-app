@@ -1,0 +1,24 @@
+.me-container {
+    padding: 100px;
+    margin: 150px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 2px lightgray solid;
+    border-radius: 15px;
+}
+
+.me-container p {
+    margin-bottom: 20px;;
+}
+
+.user-card {
+    margin: 10px;
+}
+
+.user-card span {
+    margin-right: 10px;
+}
+
+#create-account {
+    padding-top: 40px;
+}
