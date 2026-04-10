@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-      <NavBar user={user} loggedIn={loggedIn}/>
+      <NavBar user={user} loggedIn={loggedIn} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route path="/" element={<Me setUser={setUser} isLoggedIn={isLoggedIn}/>} />
         <Route path="/posts" element={<PostsList />} />
