@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
                 posts.description,
                 posts.text,  
                 CONCAT(users.first_name, ' ', users.last_name) AS author
+                posts.tags
                 posts.created_at
                 FROM posts
             JOIN users ON posts.user_id = users.id
