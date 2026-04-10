@@ -86,7 +86,53 @@ const PostForm = () => {
             className="post-form"
             onSubmit={handleSubmit}
         >
-            
+            <h2>Create new post</h2>
+            <Form.Group controlId="title">
+                <Form.Label>Title: </Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Title..."
+                    required
+                    value={post.title}
+                    onChange={handleTitle}
+                />
+            </Form.Group>
+            <Form.Group controlId="description">
+                <Form.Label>Description: </Form.Label>
+                <Form.Control
+                    type="text"
+                    value={post.description}
+                    onChange={handleDescription}
+                />
+            </Form.Group>
+            <Form.Group controlId="text">
+                <Form.Label>Add Blog Text: </Form.Label>
+                <Form.Control
+                    type="text"
+                    required
+                    value={post.text}
+                    onChange={handleText}
+                />
+            </Form.Group>
+            <Form.Group controlId="tags">
+                <Form.Label>Add Tags: </Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Add tags and seperate with comma"
+                    onChange={handleTags}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Button type="submit" variant="outline-success">
+                    Submit
+                </Button>
+                <Button type="button" variant="outline-warning" onClick={clearForm}>
+                    Reset
+                </Button>
+                <Button type="button" variant="outline-warning" onClick={() => navigate("/")}>
+                    Back
+                </Button>
+            </Form.Group>
         </Form>
     )
 
