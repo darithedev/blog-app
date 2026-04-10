@@ -34,7 +34,14 @@ const Post = () => {
             <p className="post-desc">{post.description}</p>
             <span>{new Date(post.created_at).toDateString()}</span>
 
-            <Link to={`/users/${post.user_id}`} className="post-author-section">
+            <Link 
+                to={`/users/${post.user_id}`} 
+                className="post-author-section"
+                onClick={(e) => {
+                    e.preventDefault()
+                    alert("This feature is coming soon.")
+                }}
+            >
                 <span id="post-user-icon">{post.author?.charAt(0)}</span>
                 <p>{post.author}</p>
             </Link>

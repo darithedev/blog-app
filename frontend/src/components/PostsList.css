@@ -26,12 +26,28 @@
     margin-top: 8px;
 }
 
+.author-section {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+}
+
+.author-section:hover p {
+    text-decoration: underline;
+}
+
 #user-icon {
     padding: 8px;
     padding-left: 15px;
     padding-right: 15px;
     background-color: rgb(236, 171, 171);
     border-radius: 50%;
+}
+
+#user-icon:hover {
+    transform: scale(1.04);
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 p.post-description {

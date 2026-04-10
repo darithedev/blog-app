@@ -4,8 +4,9 @@ import './PostsList.css'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const PostsList = () => {
+const PostsList = ({ pList, filtered }) => {
     const [postList, setPostList] = useState([]);
+    const posts = filtered.length ? filtered : postList;
 
     const getPosts = async () => {
         const url = `${API_URL}/posts`;
@@ -17,6 +18,7 @@ const PostsList = () => {
             
             const result = await response.json();
             setPostList(result);
+            pList(result);
         } catch (error) {
             console.error(error.message);
         }
@@ -28,10 +30,19 @@ const PostsList = () => {
 
     return (
         <ul className="posts-container">
-            {postList.map((post) => (
+            {posts.map((post) => (
                 <li className="post-card" key={post.id}>
-                    <span id="user-icon">{post.author.charAt(0)}</span>
-                    <p>{post.author}</p>
+                    <Link 
+                        to={`/users/${post.user_id}`} 
+                        className="author-section"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            alert("This feature is coming soon.")
+                        }}
+                    >
+                        <span id="user-icon">{post.author.charAt(0)}</span>
+                        <p>{post.author}</p>
+                    </Link>
                     
                     <Link to={`/posts/${post.id}`}>
                         <h3>{post.title}</h3>

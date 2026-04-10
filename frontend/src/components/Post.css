@@ -3,6 +3,10 @@
     margin: 25px;
 }
 
+.post-container h1 {
+    line-height: 1;
+}
+
 .post-desc {
     margin-top: -10px;
     margin-bottom: 25px;
