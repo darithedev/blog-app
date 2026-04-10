@@ -66,8 +66,19 @@ const PostForm = () => {
         }
     };
 
+    const clearForm = () => {
+        setContact({ 
+            user_id: id,
+            title: "",
+            description: "",
+            text: "",
+            tags: []
+        });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        postForm();
     }
 
     return (
