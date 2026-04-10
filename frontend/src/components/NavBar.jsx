@@ -16,6 +16,21 @@ const NavBar = ({ user, postList, setFiltered, loggedIn, isLoggedIn }) => {
         return () => clearTimeout(timeout);
     }, [index]);
 
+    useEffect(() => {
+        if(!search) {
+            setFiltered(postList);
+            return;
+        }
+        
+        const filtered = postList.filter((post) =>
+            post.title.toLowerCase().includes(search.toLowerCase()) ||
+            post.description.toLowerCase().includes(search.toLowerCase()) ||
+            post.author.toLowerCase().includes(search.toLowerCase())
+        );
+
+        setFiltered(filtered);
+    }, [search, postList]);
+
     return (
         <div className="navbar-container">
             
