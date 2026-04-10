@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useParams, useNavigate } from 'react-router-dom';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const PostForm = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [post, setPost] = useState({
         user_id: id,
         title: "",
