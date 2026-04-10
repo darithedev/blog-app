@@ -15,12 +15,12 @@ const PostForm = () => {
 
     const handleTitle = (event) => {
         const title = event.target.value;
-        setContact((n) => ({ ...n, name }));
+        setPost((t) => ({ ...t, title }));
     };
 
     const handleDescription = (event) => {
         const description = event.target.value;
-        setPost((desc) => ({ ...desc, description}));
+        setPost((desc) => ({ ...desc, description }));
     };
 
     const handleText = (event) => {
@@ -30,7 +30,6 @@ const PostForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        postContactForm(contact);
     }
 
     return (
