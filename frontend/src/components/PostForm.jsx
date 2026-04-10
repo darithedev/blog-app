@@ -13,6 +13,21 @@ const PostForm = () => {
         tags: []
     });
 
+    const handleTitle = (event) => {
+        const title = event.target.value;
+        setContact((n) => ({ ...n, name }));
+    };
+
+    const handleDescription = (event) => {
+        const description = event.target.value;
+        setPost((desc) => ({ ...desc, description}));
+    };
+
+    const handleText = (event) => {
+        const text = event.target.value;
+        setPost((t) => ({ ...t, text }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         postContactForm(contact);
