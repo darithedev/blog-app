@@ -38,8 +38,13 @@ router.get('/:id', async (req, res) => {
 
         const result = await pool.query(
             `SELECT 
-                posts.*,  
+                posts.id,
+                posts.title,
+                posts.description,
+                posts.text,  
                 CONCAT(users.first_name, ' ', users.last_name) AS author
+                posts.tags
+                posts.created_at
             FROM posts
             JOIN users ON posts.user_id = users.id
             WHERE posts.id = $1`,
