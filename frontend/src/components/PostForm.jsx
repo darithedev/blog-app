@@ -41,6 +41,31 @@ const PostForm = () => {
         setPost((t) => ({ ...t, tags }));
     };
 
+    const postForm = async () => {
+        const url = `${API_URL}/posts`; 
+        
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "COntent-Type": "application/json"
+                },
+                body: JSON.stringify(post)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            alert("Post was created.");
+            navigate("/");
+        } catch (error) {
+            console.error(error.message);
+            alert("Post was not created. Please try again.");
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
     }
