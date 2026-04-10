@@ -70,6 +70,10 @@ const Post = () => {
                 <p>{post.author}</p>
             </Link>
 
+            <button onClick={textAudio} >
+                {loading ? "Loading..." : "▷ Play Audio"}
+            </button>
+
             <p>{post.text}</p>
         </div>
     )
