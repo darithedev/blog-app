@@ -8,6 +8,14 @@ const NavBar = ({ user, postList, setFiltered, loggedIn, isLoggedIn }) => {
     const [index, setIndex] = useState(0);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setIndex((prev) => (prev + 1) % content.length);
+        }, 2000);
+
+        return () => clearTimeout(timeout);
+    }, [index]);
+
     return (
         <div className="navbar-container">
             
