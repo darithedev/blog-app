@@ -1,0 +1,44 @@
+.post-container {
+    text-align: left;
+    margin: 25px;
+}
+
+.post-desc {
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.post-author-section {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.post-author-section p {
+    margin-top: 8px;
+}
+
+#post-user-icon {
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgb(236, 171, 171);
+    border-radius: 50%;
+}
+
+#post-user-icon:hover {
+    transform: scale(1.04);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.post-author-section:hover p {
+    text-decoration: underline;
+}
+
+span.post-created-date {
+    padding-top: 10px;
+}

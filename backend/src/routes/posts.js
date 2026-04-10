@@ -6,7 +6,17 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query(
-            `SELECT * from posts ORDER BY created_at DESC`
+            `SELECT 
+                posts.id,
+                posts.title,
+                posts.description,
+                posts.text,  
+                CONCAT(users.first_name, ' ', users.last_name) AS author
+                posts.tags
+                posts.created_at
+                FROM posts
+            JOIN users ON posts.user_id = users.id
+            ORDER BY created_at DESC`
         );
 
         return res.status(200).json(result.rows);
@@ -27,7 +37,17 @@ router.get('/:id', async (req, res) => {
         }
 
         const result = await pool.query(
-            `SELECT * FROM posts WHERE id = $1`,
+            `SELECT 
+                posts.id,
+                posts.title,
+                posts.description,
+                posts.text,  
+                CONCAT(users.first_name, ' ', users.last_name) AS author
+                posts.tags
+                posts.created_at
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            WHERE posts.id = $1`,
             [id]
         );
 
