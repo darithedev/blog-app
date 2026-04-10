@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import './NavBar.css'
 
 const NavBar = ({ user, postList, setFiltered, loggedIn, isLoggedIn }) => {
     const [search, setSearch] = useState("");
