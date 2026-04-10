@@ -33,7 +33,57 @@ const NavBar = ({ user, postList, setFiltered, loggedIn, isLoggedIn }) => {
 
     return (
         <div className="navbar-container">
-            
+            <div className="nav-left">
+                <Link to={'/posts'}>
+                    <h3 id="review-text">
+                        Review <span style={{ color: fontColor[index] }}>{content[index]}</span>
+                    </h3>
+                </Link>
+                {loggedIn && (
+                    <input 
+                        className="search-bar" 
+                        type="text" 
+                        value={search}
+                        placeholder="Search"
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                )}
+            </div>
+            <div className="nav-right">
+                {loggedIn && (
+                    <button 
+                        className="create-button"
+                        onClick={() => {
+                            if (!user) return;
+                            navigate(`/new-post/${user.id}`)
+                        }}
+                    >
+                        Create Post
+                    </button>
+                )}
+                {loggedIn && user && (
+                    <>
+                        <Link 
+                            to={`/users/${user.id}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                alert("This feature is coming soon.")
+                            }}
+                        >
+                            <span id="user-icon-navbar">{user.first_name.charAt(0)}</span>
+                        </Link>
+                        <button 
+                            className="create-button"
+                            onClick={() => { 
+                                navigate('/')
+                                isLoggedIn(false);
+                            }}
+                        >
+                            Logout
+                        </button>
+                    </>
+                )}
+            </div>
         </div>
     )
 }
