@@ -30,8 +30,17 @@ const PostsList = () => {
         <ul className="posts-container">
             {postList.map((post) => (
                 <li className="post-card" key={post.id}>
-                    <span id="user-icon">{post.author.charAt(0)}</span>
-                    <p>{post.author}</p>
+                    <Link 
+                        to={`/users/${post.user_id}`} 
+                        className="author-section"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            alert("This feature is coming soon.")
+                        }}
+                    >
+                        <span id="user-icon">{post.author.charAt(0)}</span>
+                        <p>{post.author}</p>
+                    </Link>
                     
                     <Link to={`/posts/${post.id}`}>
                         <h3>{post.title}</h3>
