@@ -1,6 +1,12 @@
 .post-container {
+    display: flex;
+    flex-direction: column;
     text-align: left;
     margin: 25px;
+}
+
+.post-container h1 {
+    line-height: 1;
 }
 
 .post-desc {
@@ -41,4 +47,20 @@
 
 span.post-created-date {
     padding-top: 10px;
+}
+
+.post-container button {
+    align-self: center;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: rgb(243, 226, 219);
+    border: none;
+    border-radius: 15px;
+}
+
+.post-container button:hover {
+    transform: scale(1.04);
+    transition: all 0.2s ease;
+    cursor: pointer;
 }

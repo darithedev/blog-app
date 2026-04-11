@@ -1,0 +1,78 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 40px;
+    padding-left: 20px;
+    border-top: 1px lightgrey solid;
+    border-bottom: 1px lightgrey solid;
+}
+
+.navbar-container a {
+    text-decoration: none;
+}
+
+.navbar-container span {
+    display: inline-block;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+div.nav-left span {
+    min-width: 90px;
+}
+
+#review-text {
+    color: black;
+}
+
+#review-text:hover {
+    text-decoration: underline;
+}
+
+.search-bar {
+    padding: 10px;
+    padding-left: 20px;
+    width: 250px;
+    border-radius: 15px;
+    border: lightgrey;
+    background-color: rgb(242, 242, 242);
+}
+
+
+
+.nav-right {
+    margin-left: auto;
+}
+
+.create-button {
+    border: none;
+    margin-right: 20px;
+    background-color: white;
+}
+
+.create-button:hover {
+    transform: scale(1.04);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+#user-icon-navbar {
+    margin-right: 20px;
+    padding: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: rgb(236, 171, 171);
+    border-radius: 50%;
+}
+
+#logout {
+    border: none;
+    margin-right: 20px;
+    background-color: white;
+}
