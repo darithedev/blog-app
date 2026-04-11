@@ -7,6 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const Post = () => {
     const [post, setPost] = useState({});
     const { id } = useParams();
+    const [loading, setLoading] = useState(false);
 
     const getPost = async () => {
         const url = `${API_URL}/posts/${id}`;
@@ -24,6 +25,29 @@ const Post = () => {
         }
     }
 
+    const textAudio = async () => {
+        const url = `${API_URL}/text-to-speech`;
+        setLoading(true);
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type' : 'application/json' },
+                body: JSON.stringify({ text: post.text })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const speechAudio = new Audio(URL.createObjectURL(await response.blob()));
+            speechAudio.play();
+            setLoading(false);
+        } catch (error) {
+            console.error(error.message);
+            alert("Could not convert text to speech. Please try again.");
+        }
+    };
+
     useEffect(() => {
         getPost();
     }, []);
@@ -34,10 +58,21 @@ const Post = () => {
             <p className="post-desc">{post.description}</p>
             <span>{new Date(post.created_at).toDateString()}</span>
 
-            <Link to={`/users/${post.user_id}`} className="post-author-section">
+            <Link 
+                to={`/users/${post.user_id}`} 
+                className="post-author-section"
+                onClick={(e) => {
+                    e.preventDefault()
+                    alert("This feature is coming soon.")
+                }}
+            >
                 <span id="post-user-icon">{post.author?.charAt(0)}</span>
                 <p>{post.author}</p>
             </Link>
+
+            <button onClick={textAudio} >
+                {loading ? "Loading..." : "▷ Play Audio"}
+            </button>
 
             <p>{post.text}</p>
         </div>
