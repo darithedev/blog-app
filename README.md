@@ -1,11 +1,45 @@
 # Blog App 📝
 
-This repository is a full-stack **blog** app built with PostgreSQL, Express, React + Vite, and Node. Users are loaded from the database on the home screen; you pick an account to “sign in” (client-side only. New users can be created using cURL or Postman). You can browse posts, open a single post, filter the list by search, and create new posts for the selected user via a form. Each post row shows the **author’s display name** (from the API’s `author` field). **Author links** in the UI are placeholders: clicking them shows a “coming soon” message rather than opening a profile. Optional post fields include `description`, `tags` (comma-separated in the form), and the schema supports `image`. Creating an account from the UI and a real author profile page are not implemented yet.
+This repository is a full-stack **blog** app built with PostgreSQL, Express, React + Vite, and Node. Users are loaded from the database on the home screen; you pick an account to “sign in” (client-side only. New users can be created using cURL or Postman). You can browse posts, open a single post, filter the list by search, and create new posts for the selected user via a form. On a post’s detail page, **Listen with Google Cloud Text-to-Speech** turns the post body into spoken audio (MP3) via the backend. Each post row shows the **author’s display name** (from the API’s `author` field). **Author links** in the UI are placeholders: clicking them shows a “coming soon” message rather than opening a profile. Optional post fields include `description`, `tags` (comma-separated in the form), and the schema supports `image`. Creating an account from the UI and a real author profile page are not implemented yet.
+
+![Demo gif](./frontend/public/demo.gif)
 
 ## Project Stack
 
 - **`frontend/`** — React + Vite app (package name `frontend`), UI with React Bootstrap and React Router
-- **`backend/`** — Node.js + Express API + PostgreSQL (`pg`), CORS enabled for the browser
+- **`backend/`** — Node.js + Express API + PostgreSQL (`pg`), CORS enabled for the browser, plus **Google Cloud Text-to-Speech** for the post “Play Audio” action
+
+## Google Cloud Text-to-Speech
+
+The backend exposes **`POST /api/text-to-speech`**, which accepts JSON `{ "text": "..." }` and returns **MP3** audio. The React post detail page calls this endpoint so readers can hear the post body read aloud.
+
+### One-time Google Cloud setup
+
+1. In [Google Cloud Console](https://console.cloud.google.com/), create or select a project.
+2. Enable the **[Cloud Text-to-Speech API](https://console.cloud.google.com/apis/library/texttospeech.googleapis.com)** for that project.
+3. Create a **service account** (IAM & Admin → Service accounts). For typical short-form synthesis, enabling the API and using that account’s key is enough; if your organization locks down APIs, add any IAM bindings your admin requires for calling **Cloud Text-to-Speech**.
+4. Open the service account → **Keys** → **Add key** → **JSON** and download the key file. Store it **outside** the repo (and never commit it).
+
+### Wire credentials with `backend/.env.example`
+
+1. From the **`backend`** directory, copy the example env file and edit the copy:
+
+   ```bash
+   cd backend
+   cp .env.example .env
+   ```
+
+2. Set **`GOOGLE_APPLICATION_CREDENTIALS`** in **`backend/.env`** to the **absolute path** of the downloaded JSON key, for example:
+
+   ```text
+   GOOGLE_APPLICATION_CREDENTIALS=/Users/you/keys/my-blog-tts-sa.json
+   ```
+
+   The [`@google-cloud/text-to-speech`](https://www.npmjs.com/package/@google-cloud/text-to-speech) client reads this variable automatically (see also [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials)).
+
+3. Keep **`PORT`** and **`DATABASE_URL`** filled in as documented below, then start the backend with `npm run dev`.
+
+If this variable is missing or the key is invalid, **Play Audio** on a post will fail and the API returns an error.
 
 ## How to install frontend
 
@@ -21,7 +55,7 @@ Ensure the backend is running and reachable at the URL you configured (see [API 
 
 1. `cd backend`
 2. `npm install`
-3. Copy `.env.example` to `.env` and set `PORT` and **`DATABASE_URL`** (see [Database setup](#database-setup) below).
+3. Copy **`backend/.env.example`** to **`backend/.env`** and set `PORT`, **`DATABASE_URL`**, and (for Text-to-Speech) **`GOOGLE_APPLICATION_CREDENTIALS`** (see [Database setup](#database-setup) and [Google Cloud Text-to-Speech](#google-cloud-text-to-speech)).
 4. `npm run dev` (nodemon). The server listens on **`127.0.0.1`** and the port from `PORT` (default **3000** in `.env.example`).
 
 ## Database setup
@@ -65,6 +99,7 @@ There is **no** authentication layer: all endpoints are open. The frontend simul
 | `POST` | `/api/posts` | Create post. Body: `{ "user_id", "title", "text", "description", "tags" }`. **`user_id`** must be numeric; **`title`** and **`text`** are required. `tags` may be a PostgreSQL text array (e.g. `["books","sci-fi"]`). |
 | `PUT` | `/api/posts/:id` | Full update. Body: `{ "user_id", "title", "text", "description", "tags" }`. Updates only if the row matches both **`id`** and **`user_id`**. |
 | `DELETE` | `/api/posts/:id` | Delete post. Body: `{ "user_id" }` (numeric). Deletes only if the row matches **`id`** and **`user_id`**. |
+| `POST` | `/api/text-to-speech` | Synthesize speech. Body: `{ "text": "..." }`. Returns **MP3** (`audio/mpeg`). Requires **`GOOGLE_APPLICATION_CREDENTIALS`** in `backend/.env` (see [Google Cloud Text-to-Speech](#google-cloud-text-to-speech)). |
 
 CORS is enabled for browser clients.
 
@@ -76,7 +111,7 @@ CORS is enabled for browser clients.
 
 **Frontend (automated)**
 
-- Testing comign soon.
+- Testing coming soon.
 
 **Backend (manual)**
 
@@ -111,7 +146,7 @@ CORS is enabled for browser clients.
 ## How to use the app
 
 1. **Choose a user** — On `/`, pick an email and click **Select**. The app stores that user in React state and navigates to `/posts`. This is not a secure login; it is for demo and development.
-2. **Posts** — Browse `/posts`, search when logged in (navbar), open a post at `/posts/:id`, or add a post at `/new-post/:userId` (the `userId` in the URL should match your selected user’s id for a consistent experience). Author names appear on cards and on the post page; do not expect author profile navigation until that route is built.
+2. **Posts** — Browse `/posts`, search when logged in (navbar), open a post at `/posts/:id`, or add a post at `/new-post/:userId` (the `userId` in the URL should match your selected user’s id for a consistent experience). On a post page, use **Play Audio** to hear the post body via Google Cloud Text-to-Speech (backend must have valid GCP credentials). Author names appear on cards and on the post page; do not expect author profile navigation until that route is built.
 3. **API parity** — Create/update/delete users and posts through the REST API as needed; the UI covers listing, viewing, and creating posts only (no in-app edit/delete for posts or full account management).
 
 **Example `GET /api/posts` response shape** (array of rows; `author` is added by the query):
